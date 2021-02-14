@@ -8,19 +8,20 @@ function WeatherSearch({ api_call }) {
     setLocation(event.target.value);
   };
   return (
-    <>
+    <div>
       <Grid container direction="column" justify="center" alignItems="center">
-        <TextField id="Location" label="Location" onChange={handleOnChange} />
+        <TextField id="Location" label="Location" onChange={handleOnChange} style = {{width: 600,height: 40,marginTop:10 }} variant="filled"  />
         <br />
         <Button
           variant="contained"
           color="primary"
+          style={{marginBottom:10,marginTop:10}}
           onClick={() => api_call(location)}
         >
           Search
         </Button>
       </Grid>
-    </>
+    </div>
   );
 }
 

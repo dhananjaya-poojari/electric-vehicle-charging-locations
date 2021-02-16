@@ -12,12 +12,12 @@ function WeatherSearch({ api_call }) {
   const handleOnChange = (event) => {
     setLocation(event.target.value);
     timer && clearTimeout(timer);
-    timer =event.target.value? setTimeout(async function () {
+    timer = setTimeout(async function () {
       const url = `https://us1.locationiq.com/v1/search.php?key=pk.b85addb584eaefbe9e93b63a33a9a3e9&q=${event.target.value}&format=json`;
       const res = await fetch(url);
       const data = await res.json();
       data.length > 0 ? setOptions(data) : setOptions([]);
-    }, 500):undefined;
+    }, 500);
   };
 
   const handleOnSelect=(value)=>{

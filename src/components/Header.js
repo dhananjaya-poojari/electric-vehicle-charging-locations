@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    marginTop:10
+    marginTop:10,
+    marginRight:70
   },
   appbar:{
     background: '#2E3B55',

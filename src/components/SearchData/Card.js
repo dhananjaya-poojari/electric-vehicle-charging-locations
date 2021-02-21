@@ -8,7 +8,11 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    display: 'flex',
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   bullet: {
     display: "inline-block",
@@ -29,6 +33,7 @@ export default function Addres({result,color}) {
 
   return (
     <Card className={classes.root} variant="outlined" style={{backgroundColor: color }}>
+      <div className={classes.details}>
       <CardContent>
         <Typography variant="h5" component="h2">
           {result.AddressInfo.Title}
@@ -48,6 +53,11 @@ export default function Addres({result,color}) {
             Distance: {result.AddressInfo.Distance.toFixed(2)} KM
         </Typography>
       </CardContent>
+      </div>
+      <div className={classes.details}>
+      <CardContent>
+      </CardContent>
+      </div>
     </Card>
   );
 }

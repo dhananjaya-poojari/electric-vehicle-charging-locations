@@ -1,11 +1,12 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import Header from "./components/Header";
 import WeatherSearch from "./components/SearchLocation";
 import SearchResult from './components/SearchResult'
 require("dotenv").config();
 
 function App() {
+<<<<<<< HEAD
     const [searchData, setSearchData] = useState({});
     const fetchChargingLocation = async(lat, lon) => {
         const url = `https://api.openchargemap.io/v3/poi/?key=c31315d8-f49c-4610-88c8-76cd007888bc&output=json&maxresults=10&compact=true&verbose=false&latitude=${lat}&longitude=${lon}&distanceunit=KM`;
@@ -35,5 +36,34 @@ function App() {
             /div>
         );
     }
+=======
+  const [searchData, setSearchData] = useState({});
+
+  const fetchChargingLocation = async (lat, lon) => {
+    const url = `https://api.openchargemap.io/v3/poi/?output=json&maxresults=10&compact=true&verbose=false&latitude=${lat}&longitude=${lon}&distanceunit=KM`;
+    const res = await fetch(url);
+    const data = await res.json();
+    setSearchData(data);
+  };
+
+  const fetchLongitudeAndLatitude = async (location) => {
+    if (location) {
+      const API_key = process.env.API_KEY;
+      const url = `https://us1.locationiq.com/v1/search.php?key=pk.b85addb584eaefbe9e93b63a33a9a3e9&q=${location}&format=json&limit=1`;
+      const res = await fetch(url);
+      const data = await res.json();
+      await fetchChargingLocation(data[0].lat, data[0].lon);
+    }
+  };
+
+  return (
+    <div className="App">
+      <Header className="App-header"></Header>
+      <WeatherSearch api_call={fetchLongitudeAndLatitude}/>
+      { searchData.length>0 && <SearchResult searchData={searchData}/>}
+    </div>
+  );
+}
+>>>>>>> a0243af3abd9ded06f175d80b0dd4984a93e7e72
 
     export default App;
